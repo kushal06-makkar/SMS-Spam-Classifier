@@ -4,8 +4,15 @@ import string
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import nltk
-nltk.download("punkt_tab")
-nltk.download("punkt")
+
+resources = ["punkt", "punkt_tab", "stopwords"]
+
+for resource in resources:
+    try:
+        nltk.data.find(resource)
+    except LookupError:
+        nltk.download(resource)
+
 
 ps=PorterStemmer()
 
@@ -46,3 +53,4 @@ if st.button('Classify'):
     else:
 
         st.header('Not Spam')
+
